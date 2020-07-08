@@ -2,52 +2,44 @@ package com.company;
 
 class Demo {
     public static void main(String[] args) {
-        //primitive vs object references
-        //primitives slaan de waarde op en object references refereren naar een object
-        //Er zijn slechts 8 type primitives
-        //objecten kunnen een groothoeveelheid methoden op worden toegepast, daarvoor zijn wrappers handig
-        //veel operators werken niet met objecten, wel op primitives
+        //Operators
+        int operator1 = 0;                   //assignment operators, first add/subtract/multiply/etc. then assign
+        operator1 += 2;                      //ex. +=,-=,*=
+        System.out.println("First add then assign " + operator1);
 
+        String alfabet = "abc";             //+= werkt ook met Strings op te "appenden"
+        alfabet += "def";
+        System.out.println(alfabet);
 
-        //numeric-->signed-->integers
-        byte variablebyte;                  //8 bits
-        short variableshort;                //16 bits
-        int variableint;                    //32 bits
-        long variablelong;                  //64 bits
+        //Assignement starts from right, this prints 8
+        int a = 7, b = 10, c = 8;
+        a = b = c;
+        System.out.println("a = " + a);
 
-        //numeric-->signed-->Floating Point
-        float variablefloat;                //32 bits
-        double variabledouble;              //64 bits
+        //unary increments ++ and decrements --operators
+        //prefix and postfix determens when its used in an expression pre = before, post = after
 
-        float average = 20.129F;            //suffixing literal value with F or f tells the compiler that the literal value
-        float orbit = 1765.65f;             //should be treated like a float, not a double
-                                            //decimal number is by default double, so suffixing D or d is redundant
+        int d = 10;
+        d = d++ + d + d-- - d-- + ++d;
+        //  10  +11 + 11  - 10  +  10 = 32;
+        System.out.println("After unary increments--> " + d);
 
-        //numeric-->Unsigned-->Character
-        char variablechar;
+        //relational operators
+        //>=,>,<=,<,==,!=, result is always a boolean value
 
-        //variablechar = 'z';
-        //variablechar = 122;               //char data stored as unsigned integer value
-        // variablechar = '\u0122';         //unicode
-        variablechar = (char)-122;          //casting: forces conversion from one data type to another
-        System.out.println(variablechar);
+        //logical operators
+        // && and || are short circuit operators, if the first operator returns false,
+        // therefore && does not evaluate the second. Similar ||, first true, then second won't evaluate
+        // single & and | are not short circuit operators!!!
+        // ! is NOT
 
-        //Boolean
-        boolean varialbeboolean;            //true or false
-                                            //The category Boolean is not the same as the primitive data type boolean
-                                            //or wrapper class Boolean. Java primitive data types and class names are displayed
-                                            //using code font.
+        int x = 10;
+        int y = 10;
 
-        //decimal value of 267
-        int decVal = 267;                   //decimal
-        int octVal = 0413;                  //octal
-        int hexVal = 0x10_B;                //hexadecimal
-        int binVal = 0b100001011;           //binary
-        System.out.println(hexVal);
-
-        //byte, short and char values are automatically widened to int when used as as operands for arithmetic operations
-        // if long value is involved somewhere then everything widens to long
-        //this explains why you can't assign the sum of two byte values to a short (unless final is used)
-        //if it includes float or double, it is widened to double
+        //play around with operators
+        if (++x > y++ || x++ == y++) {
+            System.out.println("It's true!");
+        }
+        System.out.println(x + "<-x , y->" + y);
     }
 }
