@@ -2,44 +2,36 @@ package com.company;
 
 class Demo {
     public static void main(String[] args) {
-        //Operators
-        int operator1 = 0;                   //assignment operators, first add/subtract/multiply/etc. then assign
-        operator1 += 2;                      //ex. +=,-=,*=
-        System.out.println("First add then assign " + operator1);
 
-        String alfabet = "abc";             //+= werkt ook met Strings op te "appenden"
-        alfabet += "def";
-        System.out.println(alfabet);
+        byte b = 10;
+        short s = 10;
+        int i = 10;
+        long l = 10l;
 
-        //Assignement starts from right, this prints 8
-        int a = 7, b = 10, c = 8;
-        a = b = c;
-        System.out.println("a = " + a);
+        char c = 'a';
 
-        //unary increments ++ and decrements --operators
-        //prefix and postfix determens when its used in an expression pre = before, post = after
+        l = i;              //smaller primitives fits in bigger ones
+        i = (int) l;         //to go the other way around you have to cast
 
-        int d = 10;
-        d = d++ + d + d-- - d-- + ++d;
-        //  10  +11 + 11  - 10  +  10 = 32;
-        System.out.println("After unary increments--> " + d);
+        i = c;              //char fits in int and bigger
+        b = (byte) c;        //from short and smaller char needs to be cast
 
-        //relational operators
-        //>=,>,<=,<,==,!=, result is always a boolean value
+        float f1 = 20.0F;
+        float f2 = 5.0f;
+        double d = f1 + f2;   //float auto converts to double
 
-        //logical operators
-        // && and || are short circuit operators, if the first operator returns false,
-        // therefore && does not evaluate the second. Similar ||, first true, then second won't evaluate
-        // single & and | are not short circuit operators!!!
-        // ! is NOT
+        int i1 = 10;
+        long l1 = 40;
+        long i2 = i1 + l1;    //when long is involved in an arithmetic operator it auto widens to lon
 
-        int x = 10;
-        int y = 10;
+        byte b1 = 5;
+        short s1 = 5;
+        int x = b1 + s1;      //arithmetic operators with byte and short widens to int
 
-        //play around with operators
-        if (++x > y++ || x++ == y++) {
-            System.out.println("It's true!");
-        }
-        System.out.println(x + "<-x , y->" + y);
+        double d1 = 50.0;
+        short s2 = 50;
+        double x1 = d1 + s2;  //widens to double
+        
+
     }
 }
