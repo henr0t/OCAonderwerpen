@@ -1,31 +1,61 @@
 package com.company;
 
 class Demo {
-    static int variable2;                           //class variable
-    int variable;                                   // instance variable/fields
-    String se = "big";
-
     public static void main(String[] args) {
-        //Scope of variables
-        // Local variables (also known as method-local variables)
-        // Method parameters (also known as method arguments)
-        // Instance variables (also known as attributes, fields, and nonstatic variables)
-        // Class variables (also known as static variables)
 
-        int variable;                               //local variable
-        int variable2;
+        Dier dier1 = new Dier();
 
-        Demo.variable2 =10;                         //to call class variable
+        //overloading examples
+        dier1.eten(1,1);
+        dier1.eten(1.0,1.0);
+        dier1.eten(1.0f,"carrot",2);
 
-        new Demo().shadowingexample();
+        System.out.println(new Demo().hop());
+
     }
 
-    void methodparameters(int variable){            //method parameter
-        this.variable = 10;                         //reach field with .this (can't be done in a static class)
+    int getal(){
+        return 0;
+        //System.out.println("werkt niet");         //unreachable code, compile error
     }
 
-    void shadowingexample(){                        //shadowing is when the variable with the smallest scope is used
-        String se = "small";                        //over the bigger scope (see String se)
-        System.out.println(se);
+    Dier hop (){
+        BabyKonijn baby = new BabyKonijn();
+        return baby;                                //hetgeen dat gereturned wordt MOET covariant returntype zijn
+    }
+
+}
+
+class Dier {
+
+    public void eten(int a, int b){
+        int eten;                                   //Een field mag dezelfde naam hebben als een methode
+    }
+
+    public double eten(double c, double d){
+        return c+d;
+    }
+
+    public float eten(float x, String y, int z){
+    return x;
+    }
+
+}
+
+class Konijn extends Dier{
+
+    Konijn(){                                       //constructor
+        this("");                            //met this() kun je een andere constructor van eigen klasse aanroepen
+        System.out.println("I'm a bigger bunny");
+    }
+
+    Konijn(String naam){
+        System.out.println("I'm a "+naam);
+    }
+}
+
+class BabyKonijn extends Konijn{
+    public String toString(){
+        return "I'm a little bunny";
     }
 }
