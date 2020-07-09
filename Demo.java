@@ -6,20 +6,20 @@ class Demo {
         Dier dier1 = new Dier();
 
         //overloading examples
-        dier1.eten(1,1);
-        dier1.eten(1.0,1.0);
-        dier1.eten(1.0f,"carrot",2);
+        dier1.eten(1, 1);
+        dier1.eten(1.0, 1.0);
+        dier1.eten(1.0f, "carrot", 2);
 
         System.out.println(new Demo().hop());
 
     }
 
-    int getal(){
+    int getal() {
         return 0;
         //System.out.println("werkt niet");         //unreachable code, compile error
     }
 
-    Dier hop (){
+    Dier hop() {
         BabyKonijn baby = new BabyKonijn();
         return baby;                                //hetgeen dat gereturned wordt MOET covariant returntype zijn
     }
@@ -28,34 +28,34 @@ class Demo {
 
 class Dier {
 
-    public void eten(int a, int b){
+    public void eten(int a, int b) {
         int eten;                                   //Een field mag dezelfde naam hebben als een methode
     }
 
-    public double eten(double c, double d){
-        return c+d;
+    public double eten(double c, double d) {
+        return c + d;
     }
 
-    public float eten(float x, String y, int z){
-    return x;
+    public float eten(float x, String y, int z) {
+        return x;
     }
 
 }
 
-class Konijn extends Dier{
+class Konijn extends Dier {
 
-    Konijn(){                                       //constructor
+    Konijn() {                                       //constructor
         this("");                            //met this() kun je een andere constructor van eigen klasse aanroepen
         System.out.println("I'm a bigger bunny");
     }
 
-    Konijn(String naam){
-        System.out.println("I'm a "+naam);
+    Konijn(String naam) {
+        System.out.println("I'm a " + naam);
     }
 }
 
-class BabyKonijn extends Konijn{
-    public String toString(){
+class BabyKonijn extends Konijn {
+    public String toString() {
         return "I'm a little bunny";
     }
 }
