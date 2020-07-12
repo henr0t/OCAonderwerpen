@@ -1,59 +1,89 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.ListIterator;
+
 class Demo {
-    static String test2 = "test1";
     public static void main(String[] args) {
+        //Array
+        //An array is an object itself; it stores references to the data it stores.
 
-        String str1 = new String("test");
-        String str2 = new String("test");
-        System.out.println("prints false because they are separate objects: " + (str1 == str2));             //prints false because they are separate objects
-        System.out.println("prints true because of equal value: " + str1.equals(str2));
+        int intArray[] = new int[] {1,2,3,4,5}; //Array of primitive data, collection of primitive values
+        A objArray[] = {new A(),new A()}; //Array of Objects, collection of references
 
-        String str3 = "test";
-        String str4 = "test";
-        System.out.println("Refers to the same string in pool: " + (str3 == str4));             //same sequence of character that are stored in a pool
-        //of string objects
+        int multiArr[][] = new int [2][3]; //2 dimensional array, 2 vertical, 3 horizontal
 
-        String test1 = "test1";
-        System.out.println("Refers to the same string object in pool: " + ("test1" == test1));       //refers to the same string object in pool
-        System.out.println("Static String are also in the String pool: "+("test1"==test2));
+        //use nested for loops to initialize its array elements
+        for (int i=0; i<multiArr.length; i++){
+            for (int j=0; j<multiArr[i].length; j++){
+                multiArr[i][j] = i+j;
+            }
+            System.out.println("|"+multiArr[i][0]+"|"+multiArr[i][1]+"|"+multiArr[i][2]+"|");
+        }
+        // System.out.println(multiArr[1][5]); //ArrayIndexOutOfBoundsException when accessing nonexistent array index
+        //it will compile, but throw exception at runtime
 
-        String methods = "Hello, World ";
-        System.out.println(methods + ".");
+//        Code to access an array index will throw a runtime exception if
+//        you pass it an invalid array index value. Code to access an array index will fail
+//        to compile if you don’t use a char, byte, short, or int.
 
-        System.out.println("\ncharAt(): " + methods.charAt(0));
-        System.out.println("indexOf(): " + methods.indexOf("World"));
-        System.out.println("substring(): " + methods.substring(7, 12));        //starts at, ends to
-        System.out.println("trim(): " + methods.trim() + ".");
-        System.out.println("replace(): " + methods.replace('o', 'U'));
-        System.out.println("length(): " + methods.length());
-        System.out.println("startsWith(): " + methods.startsWith("H"));
-        System.out.println("ensWith(): " + methods.endsWith("d"));           //notice the space at the end of string
+        //asymetrical multidimensional array
+        int multiArr2[][] = {{1,2,3},null,{1,2,3,4}};   //0- 1 2 3
+                                                        //1- null
+                                                        //2- 1 2 3 4
+
+        //System.out.println(multiArr2[1][1]); nullpointerexception
+        System.out.println(multiArr2.length);   // Array—Determine element count using the variable length
+
+//        As opposed to an array, you’ll invoke
+//        a lot of methods on String objects. So you use the method length() to retrieve the
+//        length of String and the variable length to retrieve the length of an array.
+
+        String stringArray [] = new String[2];
+        for (String print: stringArray){
+            System.out.println(print);      //default of null or 0 if int
+        }
 
         System.out.println("\n");
 
-        //String is immutable, which helps the JVM reuse String objects, reducing memory overhead and increase performance
-        String a = "abc";
-        a.replaceAll("ab", "AB");
-        System.out.println("example of immutability: " + a);
+        ArrayList<String> myArrList = new ArrayList<>();
+        myArrList.add("one");
+        myArrList.add("two");
+        myArrList.add("four");
+        myArrList.add(2,"three"); //puts it in index 2, shifts "four" one place forward to 3
 
-        String b = "def";
-        b += null;          //is same as b = b null
-        System.out.println("concatenate: "+b);
+        System.out.println(myArrList);
 
-        System.out.println("\n");
-        //StringBuilder
-        //The class StringBuilder is defined in the package java.lang, and it has a mutable sequence of characters
-        //uses a non-final char array to store its value.
+        //This method used to return a list iterator over the elements in this list (in proper sequence),
+        // starting at the specified position in the list.
+        ListIterator<String> iterator = myArrList.listIterator(0);
+        while (iterator.hasNext()) System.out.println(iterator.next());
 
-        StringBuilder sb1 = new StringBuilder("StringBuilder");
-        System.out.println("append(): " + sb1.append(" append"));
-        char[] sbchar = {'J', 'a', 'v', 'a'};
-        System.out.println("insert(): " + sb1.insert(6, sbchar, 1, 3));      //between index 5 and 6
-        System.out.println("delete(): " + sb1.delete(0, 6));
-        System.out.println("replace(): " + sb1.replace(0, 4, "STRING"));
-        System.out.println("subSequence(): " + sb1.subSequence(0, 12));
-        System.out.println("reverse(): " + sb1.reverse());
+        myArrList.set(3,"WHATEVER");
+        System.out.println("set(): "+ myArrList);
+        System.out.println("remove(): "+myArrList.remove(3));
+        System.out.println("contains(): "+myArrList.contains("one"));
+        System.out.println("indexOf(): "+myArrList.indexOf("two"));
+        System.out.println("lastIndexOf(): "+myArrList.lastIndexOf("three"));
+        System.out.println("size(): "+myArrList.size());
+        myArrList.clear();
+        System.out.println("clear(): "+myArrList);
+
+
+        ArrayList <String> myArrList2 = new ArrayList<>();
+        myArrList2.add("1");
+        myArrList2.add("2");
+        myArrList2.add("3");
+
+        //AddAll to add an entire ArrayList to another
+        ArrayList <String> yourArrList = new ArrayList<>();
+        yourArrList.add("2.5");
+        yourArrList.add("2.7");
+
+        myArrList2.addAll(2,yourArrList);
+        System.out.println(myArrList2);
 
     }
 }
+
+class A {}
