@@ -1,89 +1,61 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.ListIterator;
-
 class Demo {
-    public static void main(String[] args) {
-        //Array
-        //An array is an object itself; it stores references to the data it stores.
+    public static void main(String[]args) {
+        //Wrapper classes
+        // wrapper classes are used to wrap primitives in an object, so they can be added to a collection of object.
+        //wrapper classes are immutable-classes
 
-        int intArray[] = new int[] {1,2,3,4,5}; //Array of primitive data, collection of primitive values
-        A objArray[] = {new A(),new A()}; //Array of Objects, collection of references
+        //Numeric wrapper classes:
+        int whatever = 12;
 
-        int multiArr[][] = new int [2][3]; //2 dimensional array, 2 vertical, 3 horizontal
+        Byte byte1 = 10;                //This is the autoboxing method for wrapper classes
+        Short short1 = 10;              //
+        Integer int1 = whatever;        //
+        Long long1 = 108456798L;        //
+        Float float1 = 10.12345f;       //
+        Double double1 = 10.98;         //
 
-        //use nested for loops to initialize its array elements
-        for (int i=0; i<multiArr.length; i++){
-            for (int j=0; j<multiArr[i].length; j++){
-                multiArr[i][j] = i+j;
-            }
-            System.out.println("|"+multiArr[i][0]+"|"+multiArr[i][1]+"|"+multiArr[i][2]+"|");
-        }
-        // System.out.println(multiArr[1][5]); //ArrayIndexOutOfBoundsException when accessing nonexistent array index
-        //it will compile, but throw exception at runtime
+        //auto unboxing
+        long long2 = long1;
 
-//        Code to access an array index will throw a runtime exception if
-//        you pass it an invalid array index value. Code to access an array index will fail
-//        to compile if you don’t use a char, byte, short, or int.
+        //Object wrapper classes
+        Boolean bool1 = true;           //
+        Character char1 = 'a';          //
 
-        //asymetrical multidimensional array
-        int multiArr2[][] = {{1,2,3},null,{1,2,3,4}};   //0- 1 2 3
-                                                        //1- null
-                                                        //2- 1 2 3 4
+        //Constructor method
+        Boolean bool2 = new Boolean(true);
+        Boolean bool3 = new Boolean("true");
 
-        //System.out.println(multiArr2[1][1]); nullpointerexception
-        System.out.println(multiArr2.length);   // Array—Determine element count using the variable length
+        //static method valueOf()
+        Boolean bool4 = Boolean.valueOf(true);
+        Boolean bool5 = Boolean.valueOf("TrUE");
 
-//        As opposed to an array, you’ll invoke
-//        a lot of methods on String objects. So you use the method length() to retrieve the
-//        length of String and the variable length to retrieve the length of an array.
+        System.out.println(">>>>"+(bool4 == bool5));
 
-        String stringArray [] = new String[2];
-        for (String print: stringArray){
-            System.out.println(print);      //default of null or 0 if int
-        }
+        //None of these classes define a no-argument constructor.
+        //wrapper classes are immutable, so it doesn't make sense to initialize with the default primitive value
+        //all wrapper classes (except character) define a constructor that accepts a String argument
+        //constructors always create new instances,
+        // valueOf returns a cached copy for applicable value, same goes for autoboxing
 
-        System.out.println("\n");
+        //(exceptions based on the cached range of said value)
+//        Cached instances exist for the wrapper Boolean class for the values
+//        true and false. The Character class caches instances with values from 0 to
+//        127. Classes Byte, Short, Integer, and Long cache instances for values -127 to
+//        128. No cached instances exist for the Float and Double wrapper classes.
 
-        ArrayList<String> myArrList = new ArrayList<>();
-        myArrList.add("one");
-        myArrList.add("two");
-        myArrList.add("four");
-        myArrList.add(2,"three"); //puts it in index 2, shifts "four" one place forward to 3
+        Integer int3 = Integer.valueOf(200);
+        Integer int4 = Integer.valueOf(200);
 
-        System.out.println(myArrList);
+        System.out.println("== method: "+(int3 == int4));
+        System.out.println("equals method: "+int3.equals(int4));
+        //.equals  compares the primitive value stored by a wrapper
+        //checking whether they refer to the same instance
 
-        //This method used to return a list iterator over the elements in this list (in proper sequence),
-        // starting at the specified position in the list.
-        ListIterator<String> iterator = myArrList.listIterator(0);
-        while (iterator.hasNext()) System.out.println(iterator.next());
+        //objects of different wrapper classes with the same values are not equal
+        //equals() will return false, == won't compile
 
-        myArrList.set(3,"WHATEVER");
-        System.out.println("set(): "+ myArrList);
-        System.out.println("remove(): "+myArrList.remove(3));
-        System.out.println("contains(): "+myArrList.contains("one"));
-        System.out.println("indexOf(): "+myArrList.indexOf("two"));
-        System.out.println("lastIndexOf(): "+myArrList.lastIndexOf("three"));
-        System.out.println("size(): "+myArrList.size());
-        myArrList.clear();
-        System.out.println("clear(): "+myArrList);
-
-
-        ArrayList <String> myArrList2 = new ArrayList<>();
-        myArrList2.add("1");
-        myArrList2.add("2");
-        myArrList2.add("3");
-
-        //AddAll to add an entire ArrayList to another
-        ArrayList <String> yourArrList = new ArrayList<>();
-        yourArrList.add("2.5");
-        yourArrList.add("2.7");
-
-        myArrList2.addAll(2,yourArrList);
-        System.out.println(myArrList2);
 
     }
 }
-
-class A {}
