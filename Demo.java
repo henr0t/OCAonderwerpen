@@ -12,6 +12,8 @@ class Demo {
 
         System.out.println(new Demo().hop());
 
+        new BabyKonijn().doen();
+
     }
 
     int getal() {
@@ -43,9 +45,15 @@ class Dier {
 }
 
 class Konijn extends Dier {
+    public int leeftijd;
+
+    public String spring() {
+        return "nomnom";
+    }
+
 
     Konijn() {                                       //constructor
-        this("");                            //met this() kun je een andere constructor van eigen klasse aanroepen
+        this("");                             //met this() kun je een andere constructor van eigen klasse aanroepen
         System.out.println("I'm a bigger bunny");
     }
 
@@ -55,7 +63,16 @@ class Konijn extends Dier {
 }
 
 class BabyKonijn extends Konijn {
+    public void doen() {
+        System.out.println(super.spring());         //roept methode aan in de parent/super class
+        super.leeftijd = 10;
+    }
+
     public String toString() {
         return "I'm a little bunny";
+    }
+
+    BabyKonijn() {
+        super("BABY");                      //roept constructor aan van de superclass
     }
 }
