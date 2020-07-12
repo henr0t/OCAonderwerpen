@@ -2,61 +2,87 @@ package com.company;
 
 class Demo {
     public static void main(String[] args) {
-        int x = 0;
-        if (x == 0) System.out.println("zonder {} 1e statement geldig");
-        else if (x == 1) {
-            System.out.println("else if");
-        } else {
-            System.out.println("else statement");
-        }
+        //override
+        Voertuig voertuig1 = new Voertuig();
+        voertuig1.verplaatsen();
 
-        String a = x == 0 ? "true" : "false";
-        System.out.println("Korte if notitie: " + a);
+        Voertuig auto1 = new Auto();
+        auto1.verplaatsen();
 
-        int y = 0;
-        switch (y) {
-            default:
-                System.out.println("default can be anywhere.");
-            case 1:
-                System.out.println("without break it keeps going");
-            case 2:
-                System.out.println("See!!!");
-                break;
-            case 4:
-            case 3:
-            case 5:
-                System.out.println("doesn't print");
-        }
+        Voertuig SUV1 = new SUV();
+        SUV1.verplaatsen();
 
-        //for loops
-        for (int i = 0; i < 3; i++) {
-            System.out.println("repeats " + i + " times.");
-        }
+        //polymorphism (field links, methode rechts)
+        System.out.println("Door polymorphism wordt x van voertuig aangeroepen: " + SUV1.x);
 
-        //enhanced for loops
-        String[] strArray = new String[2];
-        for (String element : strArray) {
-            System.out.println("enhanced loops: " + element);
-        }
+        System.out.println("instanceof: " + (SUV1 instanceof Fabriek));
 
-        int z = 0;
-        while (z < 2) {
-            System.out.println("while loops: " + z);
-            z++;
-        }
+        //casting
+        Auto mijnAuto = new SUV();
+        //mijnAuto.fourwheeldrive();            //kan niet bij methode van SUV
+        SUV nieuwSUV = (SUV) mijnAuto;          //op de belofte dat mijnAuto een SUV is
+        nieuwSUV.fourwheeldrive();              //na casting wel
 
-        int w = 0;
-        do {
-            System.out.println("do-while loops: " + w);
-            w++;
-        } while (w != 2);
-
-        LABEL1:
-        for (int i = 0; i < 5; i++) {
-            if (i == 2) {
-                break LABEL1;
-            }
-            System.out.println("Labels: "+i);
-        }
+        //aanroep van static methode in interface
+        Bestuurbaar.sturen();
     }
+}
+
+abstract class Fabriek {                         //can't be instantiated, just extended
+    abstract void maakVoertuig();               //no body, must be called in child class
+}
+
+class Voertuig extends Fabriek {
+    String x = "voertuig";
+
+    public String verplaatsen() {
+        System.out.println("Ik verplaats me. Ben " + x);
+        return "Voertuig";
+    }
+
+    void maakVoertuig() {
+    }
+}
+
+class Auto extends Voertuig implements Bestuurbaar {
+    String x = "Auto";
+
+    @Override
+    public String verplaatsen() {
+        System.out.println("Ik ben override in " + x);
+        return "Auto";
+    }
+
+    public void besturen() {
+    }                    //must have public!!
+}
+
+class SUV extends Auto {
+    String x = "SUV";
+
+    @Override
+    public String verplaatsen() {
+        System.out.println("Ik override in " + x);
+        return "SUV";
+    }
+
+    public void fourwheeldrive() {
+        System.out.println("SUV met 4WD");
+    }
+}
+
+interface Bestuurbaar extends Motor {
+    public static final boolean bestuurbaar = true; //interface fields zijn impliciet public static final!!!
+
+    public static void sturen() {               //static methode aan te roepen door Bestuurbaar.sturen();
+        System.out.println("statische methode in interface");
+    }
+
+    public abstract void besturen();            //abstract verplicht te implementeren
+
+    public default void draaien() {             //default niet verplicht te implementeren
+    }
+}
+
+interface Motor {
 }
