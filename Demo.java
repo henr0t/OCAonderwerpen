@@ -12,7 +12,7 @@ class Demo {
         String str3 = "test";
         String str4 = "test";
         System.out.println("Refers to the same string in pool: " + (str3 == str4));             //same sequence of character that are stored in a pool
-                                                                                                //of string objects
+        //of string objects
 
         String test1 = "test1";
         System.out.println("Refers to the same string object in pool: " + ("test1" == test1));       //refers to the same string object in pool
@@ -41,6 +41,19 @@ class Demo {
         b += null;          //is same as b = b null
         System.out.println("concatenate: "+b);
 
+        System.out.println("\n");
+        //StringBuilder
+        //The class StringBuilder is defined in the package java.lang, and it has a mutable sequence of characters
+        //uses a non-final char array to store its value.
+
+        StringBuilder sb1 = new StringBuilder("StringBuilder");
+        System.out.println("append(): " + sb1.append(" append"));
+        char[] sbchar = {'J', 'a', 'v', 'a'};
+        System.out.println("insert(): " + sb1.insert(6, sbchar, 1, 3));      //between index 5 and 6
+        System.out.println("delete(): " + sb1.delete(0, 6));
+        System.out.println("replace(): " + sb1.replace(0, 4, "STRING"));
+        System.out.println("subSequence(): " + sb1.subSequence(0, 12));
+        System.out.println("reverse(): " + sb1.reverse());
+
     }
 }
-
