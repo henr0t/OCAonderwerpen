@@ -2,27 +2,41 @@ package com.company;
 
 class Demo {
     public static void main(String[] args) {
-        //Encapsulation in Java is a mechanism of wrapping the data (variables) and code acting on the data (methods)
-        // together as a single unit. In encapsulation, the variables of a class will be hidden from other classes,
-        // and can be accessed only through the methods of their current class.
-
-        Encapsulation test1 = new Encapsulation();
-
-        test1.setNaam("Harry Handrem");
-        System.out.println(test1.getNaam());
-
+        new B();                            //volgorde is static, non static, constructor (van boven naar beneden)
+        System.out.println("\n");
+        new B();                            //statische initializer blocks worden slechts 1x aangeroepen
     }
 }
 
-class Encapsulation{
-    private String naam;
-
-    public void setNaam(String newNaam){        //setter
-        naam = newNaam;
+class A {
+    static {
+        System.out.println("1: static initialiser block A");
     }
 
-    public String getNaam(){                    //getter
-        return naam;
+    {
+        System.out.println("4: Initialiser block A");
     }
 
+    A() {
+        System.out.println("5: Constructor A");
+        ;
+    }
+
+    static {
+        System.out.println("2: static initialiser block A2");
+    }
+}
+
+class B extends A {
+    static {
+        System.out.println("3: static initialiser block B");
+    }
+
+    {
+        System.out.println("6: Initializer block B");
+    }
+
+    B() {
+        System.out.println("7: Constructor B");
+    }
 }
