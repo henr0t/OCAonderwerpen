@@ -1,109 +1,47 @@
 package com.company;
 
-class Demo {
-    public static void main(String[] args) throws Exception{
+import com.company.other.*;
 
-        ZZZ u = new CCC();
+class Demo extends Demo2{
 
-        System.out.println(u.x);
-        CCC d = (CCC)u;
-        d.methodC();
+    public static void main(String[] args) {
+        new A().whatever(50);
 
-        System.out.println(d.a);
-
-        BBB b = new AAA();
-        b.methodB();
-        System.out.println(b.x);
-
-        try{b.yyy();
-            System.out.println("TRIED");
-        }catch(RaRaError rara){
-            System.out.println("CAUGHT");
-        }
-        System.out.println("Doesn't print");
     }
-
-    public ZZZ uuu(ZZZ b){
-        return new CCC();
-    }
-
 }
 
-class AAA extends BBB{
+class A{
+    public String toString(){
+        return "I am A, call me mr.this";
+    }
     int x = 10;
-    public int yyy() throws RaRaError{
-        System.out.println("I'm yyy in AAA"+x);
-        throw new RuRuError();
+    static int y = 20;
+    final int z = 60;
+    public void whatever(int z){
+        int x = 30;
+        int y = 40;
+        System.out.println(this.x);
+        System.out.println(x);
+        System.out.println(A.y);
+        System.out.println(y);
+        System.out.println(this.z);
+        System.out.println(z);
+
+        System.out.println(this);
     }
 
-    public void methodA(){
-        System.out.println("AAA");
+    A(){
+    this(3.0);
+        System.out.println("constructor  2");
     }
 
-    AAA(){
-        super("Super");
-        System.out.println("Construct AAA");
+    A(int x){
+        super();
+        System.out.println("constructor "+x);
     }
 
-    private String kkk;
-
-    public String ttt(String kkk){
-        this.kkk = kkk;
-        return kkk;
-    }
-
-    public void iii(){
-        System.out.println("My name is: "+kkk);
-    }
-
-}
-
-class BBB extends CCC{
-    int x = 20;
-    public int yyy() throws RaRaError{
-        System.out.println("I'm yyy in BBB"+x);
-        return x;
-    }
-    public void methodB(){
-        System.out.println("BBB");
-    }
-
-    BBB(String s){
-        System.out.println("Construct BBB"+s);
+    A(double z){
+        this(1);
+        System.out.println("constructor "+z);
     }
 }
-
-class CCC implements ZZZ{
-    static String d = QQQ();
-
-    int x = 30;
-    public int yyy() throws RaRaError{
-        System.out.println("I'm yyy in CCC"+x);
-        return x;
-    }
-    static{
-        System.out.println("JJJ");
-    }
-
-    public void methodC(){
-        System.out.println("CCC");
-    }
-
-    static String QQQ(){
-        System.out.println("QQQ");
-        return "QQQ";
-    }
-}
-
-interface ZZZ extends PPP{
-    int x = 99;
-    int yyy() throws RaRaError;
-
-}
-
-interface PPP{
-    String a = "PPP";
-}
-
-class RaRaError extends Exception{}
-class RuRuError extends RaRaError{}
